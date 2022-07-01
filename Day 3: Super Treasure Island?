@@ -1,0 +1,46 @@
+print('''*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/______/_
+*******************************************************************************''')
+
+
+print("Welcome to Super Treasure Island.")
+print("Your mission is to find the Super Treasure! The contract says it should take no more than a day's journey! Let's get started.")
+
+direction = input("You're at a cross road. Left leads to a winding path, right leads to an overgrown jungle? Type 'left' or 'right' ")
+lc_direction = direction.lower()
+
+if lc_direction == "left":
+    lake = input("The winding path leads to a lake. There is a tiny island in the middle of the lake. Type 'wait' to wait for a boat or 'swim' to swim across. ")
+    lc_lake = lake.lower()
+    if lc_lake == "wait":
+        open_door = input("Thanks to the self-driving boat by Tesla™. You arrive at the island unharmed. There is a house with 3 doors. One red, one yellow and one blue. Which colour do you choose?. ")
+        lc_open_door = open_door.lower()
+        if lc_open_door == "red":
+            print("You hear a click and a sudden flash of thunder and white. Homemade C4 is a bitch yeah?. Try again.")
+        elif lc_open_door == "yellow":
+            print("Found the treasure wao! You've earned 20gp for your troubles. Just enough money for the way back to the guild. Who put up this contract?!")
+        elif lc_open_door == "blue":
+            print("A horde of smurfs flood out of the door and carry you to god knows where. Try again.")
+        else:
+            print("The house suddenly collapses on you. Who would've thought the house IS a mimic?! Try again.")
+    else:
+        print("A school of piranha-sardines devour you limb from limb. What are piranha-sardines, I don't know? Try again.")
+else:
+    print("You were ambushed and ripped to shreds by dropbears! You thought they only existed in Australia huh. Try again.")
