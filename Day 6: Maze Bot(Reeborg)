@@ -1,0 +1,28 @@
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+def move_right():
+    turn_right()
+    move()
+    
+def move_forward():
+    move()
+    
+def move_left():
+    turn_left()
+    move()
+    
+i = 0
+    
+while not at_goal():
+    if right_is_clear() and i <= 5:
+        move_right()
+        i += 1    
+    elif front_is_clear():
+        move_forward()
+        i = 0
+    elif not front_is_clear():
+        turn_left()
+        i = 0
