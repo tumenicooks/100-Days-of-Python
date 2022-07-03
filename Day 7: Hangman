@@ -1,0 +1,59 @@
+import random
+from hangman_art import stages, logo, win, lose
+from hangman_words import word_list
+
+game_over = False
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+lives = 6
+display = []
+
+for letter in chosen_word:
+    display.append("_")
+
+#list that stores prior gussed letters
+guessed_letters = []
+
+print(logo)
+
+while not game_over:
+    already_guessed = ""
+    guess = input("Guess a letter: ").lower()
+    wrong_text = f"Letter {guess} is not in the word. Try again!"
+
+    #Check if letter in chosen word, reveal if yes
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = guess
+
+    #Check if letter has already been guessed before by checking guessed_letters
+    if guess not in guessed_letters:
+        guessed_letters.append(guess)
+        already_guessed = False
+    elif guess in guessed_letters:
+        print("You've already guessed that letter. \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ")
+        already_guessed = True
+
+    #Reduce lives if wrong and game over conditions
+    if guess not in chosen_word and already_guessed == False:
+        lives -= 1
+        print(wrong_text)
+        already_guessed = True
+    elif guess not in chosen_word and already_guessed == True:
+        print(wrong_text)
+
+    hangman = stages[lives]
+    print(hangman)
+
+    #Game over condition
+    if lives <= 0:
+        game_over = True
+        print(lose)
+        print(f"The word was {chosen_word}")
+
+    print(f"{' '.join(display)}")
+
+    if "_" not in display:
+        game_over = True
+        print(win)
