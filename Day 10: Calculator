@@ -1,0 +1,46 @@
+from calc_art import logo
+import os
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
+#Calculator Functions
+def add(n1, n2):
+    return n1 + n2
+
+def subtract(n1, n2):
+    return n1 - n2
+
+def multiply(n1, n2):
+    return n1 * n2
+
+def divide(n1, n2):
+    return n1 / n2
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+#input 1
+def calculator():
+    print(logo)
+    num1 = float(input("What's the first number?: "))
+    for symbol in operations:
+        print(symbol)
+    #calculation loop
+    continue_calc = True
+    while continue_calc == True:
+        operation_symbol = input("Pick an operation from the line above: ")
+        num2 = float(input("What's the next number?: "))
+        answer = operations[operation_symbol](n1=num1, n2=num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        continue_prompt = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start again: ")
+        if continue_prompt == "y":
+            num1 = answer
+        else:
+            continue_calc = False
+            cls()
+            calculator()
+calculator()
