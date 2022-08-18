@@ -1,0 +1,86 @@
+from blackjack_art import logo
+import os
+import random
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
+#card deck
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+print(logo)
+continue_play = True
+while continue_play == True:
+    def deal():
+        player_hand = []
+        dealer_hand = []
+        p_hand_sum = sum(player_hand)
+        d_hand_sum = sum(dealer_hand)
+        #Initial deal for player
+        player_dealt_hand = random.choices(cards, k=2)
+        player_hand.extend(player_dealt_hand)
+        dealer_dealt_hand = random.choices(cards, k=2)
+        dealer_hand.extend(dealer_dealt_hand)
+        def play():
+            print(f"Your cards: {player_hand}, current score {sum(player_hand)}")
+            print(f"Computer's first card {dealer_hand[0]}")
+            draw_more = input("Type 'y' to get another card, type 'n' to pass:")
+            if draw_more == "y":
+                #if y, draws more cards for player
+                def player_draw():
+                    player_draw = int(random.choice(cards))
+                    player_hand.append(player_draw)
+                    if sum(player_hand) > 21:
+                        for card in range(len(player_hand)):
+                            if player_hand[card] == 11:
+                                player_hand[card] = 1
+                    if sum(player_hand) > 21:
+                        print(f"Your final hand: {player_hand}, final score {sum(player_hand)}")
+                        print("You went over. You lose :(")
+                        play_again = input("Wanna play another round? y or n: ")
+                        if play_again == 'y':
+                            cls()
+                            print(logo)
+                            deal()
+                        else:
+                            continue_play = False
+                            quit()
+                    play()
+                player_draw()
+            if draw_more == "n":
+                # add more card to dealer if total <= 13
+                if sum(dealer_hand) <= 13:
+                    dealer_draw = int(random.choice(cards))
+                    dealer_hand.append(dealer_draw)
+                if sum(dealer_hand) > 21:
+                    for card in range(len(dealer_hand)):
+                        if dealer_hand[card] == 11:
+                            dealer_hand[card] = 1
+                print(f"Your final hand: {player_hand}, final score {sum(player_hand)}")
+                print(f"Computer's final hand: {dealer_hand}, final score {sum(dealer_hand)}")
+                deal_more = False
+                # checks for player and dealer hand total
+                def result():
+                    if cards[0] in player_hand and sum(player_hand) > 21:
+                        cards[0] = 1
+                    if sum(player_hand) == sum(dealer_hand):
+                        print("Draw")
+                    elif sum(dealer_hand) == 21:
+                        print("Computer wins by blackjack!")
+                    elif sum(player_hand) == 21:
+                        print("Player wins by blackjack!")
+                    elif sum(player_hand) > sum(dealer_hand) or sum(dealer_hand) > 21:
+                        print("You win")
+                    elif sum(player_hand) < sum(dealer_hand):
+                        print("You lose")
+                    play_again = input("Wanna play another round? y or n: ")
+                    if play_again == 'y':
+                        cls()
+                        print(logo)
+                        deal()
+                    else:
+                        continue_play = False
+                        quit()
+                result()
+        play()
+    deal()
